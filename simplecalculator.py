@@ -1,131 +1,168 @@
-#make a program where the computer gives the user a random target which the user has to then add or subtract to reach
-#the user is also given a random number but can choose how much ever they want to add or subtract
-#the user should have 5 chances, but shouldn't be notified until they have 2 chances left
-#but every time the user gets the question incorrect the given number changes
-# Every questions the user gets right they get a point but every question they get wrong a point gets removed
-# (note: the player isn't allowed to go into a negative score)
-#DONE 10/1/25
-import random
-
-print("[Random Addition and Subtraction Practice]")
-print()
-guesscounter = 2
-score =0
-# replay system
-def replay():
-    global score
-    print("Would you like to play again? Y or N")
-    rp = input("")
-    rp = rp.upper()
-
-    if rp == "Y":
-        maingame()
-
-    if rp == "N":
-        if score < 0:
-            print("Score 0")
-        else:
-            print(f"score: {score}")
-            exit()
+# make calculator that does addition, subtraction, division, multiplaction,
+# exponents, and square roots
+#make it so that the user restarts after every eqaution is solved
+# make the calculator look nice and neat
+#keep track of all the calculations the user has made
+#allow the user to go back to the operartions menu incase they make a mistake
+#(You can not divide by zero)
+#Square root formula is exponent 1/2
 
 
-def maingame():
-    global score
+History = ""
+
+print("[Calculator]")
+def main_menu():
+
+    print("What would you like to do")
+    print("1) Add")
+    print("2) Subtract")
+    print("3) Multiply")
+    print("4) Divide")
+    print("5) Exponents")
+    print("6) Square roots")
+    print("7) Calculator History")
+    print("8) Exit")
+
+    choice = int(input("> "))
+
+    if choice == 1:
+        addition()
+
+    if choice == 2:
+        Subtraction()
+
+    if choice == 3:
+        Multiply()
+
+    if choice == 4:
+        Divide()
+
+    if choice == 5:
+        Exponent()
+
+    if choice == 6:
+        squareroot()
+
+    if choice == 7:
+        print(History)
+
+    if choice == 8:
+        print("Ok Bye")
+        exit()
+
+#addition
+def addition():
+        global History
+        print("what would you like to add")
+        print("if you would like to go back press enter")
+        num1 = float(input(">"))
+        print("+")
+        num2 = float(input(">"))
+        if num1 != str:
+            main_menu()
+        total = num1 + num2
+        print(f"{num1} + {num2} = {total}")
+        History = History + f"{num1} + {num2} = {total}\n"
+        returnmen = input("press any button to return to main menu ")
+        if returnmen == 1 or returnmen != "a" or returnmen == "a":
+            main_menu()
+
+
+
+
+
+
+
+#Subtraction
+def Subtraction():
+        global History
+        print("what would you like to subtract")
+        num1 = float(input(">"))
+        print("-")
+        num2 = float(input(">"))
+        total = num1 - num2
+        print(f"{num1} - {num2} = {total}")
+        History = History + f"{num1} - {num2} = {total}\n"
+        returnmen = input("press any button to return to main menu ")
+        if returnmen == 1 or returnmen != "a" or returnmen == "a":
+            main_menu()
+
+
+
+#Multiply
+def Multiply():
+        global History
+        print("what would you like to Multiply")
+        num1 = float(input(">"))
+        print("x")
+        num2 = float(input(">"))
+        total = num1 * num2
+        print(f"{num1} x {num2} = {total}")
+        History = History + f"{num1} x {num2} = {total}\n"
+        returnmen = input("press any button to return to main menu ")
+        if returnmen == 1 or returnmen != "a" or returnmen == "a":
+            main_menu()
+
+
+
+
+#Division
+def Divide():
     while True:
-        targetnum = random.randint(1,1000)
-        guesses = 0
-        while True:
+        global History
+        print("what would you like to Divide")
+        num1 = float(input(">"))
+        print("/")
+        num2 = float(input(">"))
+        if num2 == 0:
+            print("Sorry you cannot divide by zero")
+        else:
+            total = num1 / num2
+            print(f"{num1} / {num2} = {total}")
+            History = History + f"{num1} / {num2} = {total}\n"
+            returnmen = input("press any button to return to main menu ")
+            if returnmen == 1 or returnmen != "a" or returnmen == "a":
+                main_menu()
 
-    #make guesses checker
-            if guesses > 4:
-                print("sorry your out of guesses")
-                replay()
+
+#Exponent
+def Exponent():
+        global History
+        print("what would exponent would you like to add to your base")
+        num1 = float(input("Whats your base? >"))
+        print("^")
+        num2 = float(input("Whats your exponent? >"))
+        total = num1 ** num2
+        print(f"{num1} ^ {num2} = {total}")
+        History = History + f"{num1} ^ {num2} = {total}\n"
+        returnmen = input("press any button to return to main menu ")
+        if returnmen == 1 or returnmen != "a" or returnmen == "a":
+            main_menu()
 
 
-    #guess notifier
-            if guesses >= 3:
-                global guesscounter
-                print(f"you have {guesscounter} guesses left")
-                guesscounter = guesscounter - 1
-
-            givennum = random.randint(1,1000)
-
-            print(f"the target number is {targetnum}")
+#Squareroot
+def squareroot():
+    while True:
+        global History
+        print("what would you like to know the square root of ")
+        num1 = int(input(">"))
+        if num1 == 0:
+            print("Sorry you cannot get the square root of 0")
+        else:
+            total = num1 ** 0.5
+            print(f"the square root of {num1} is {total}")
             print()
-            print(f"and your given number is {givennum}")
-            print()
-            print("Whats your operation of choice")
-            print("1) Addition")
-            print("2) Subtraction")
-
-
-            operation = int(input(">"))
-            print()
-
-
-
-
-
-        #opperation - addition
-            if operation == 1:
-                guesses = guesses+1
-                add = int(input("What number would you like to add? +"))
-                totalA = givennum + add
-                print(f"ok {add} + {givennum} = {totalA}")
+            if num1 % total ==0:
+                print("That's a perfect square!")
                 print()
-                if totalA == targetnum:
-                    score = score + 1
-
-                    print("correct!!! good job ")
-                    replay()
-
-                else:
-                    print("Incorrect")
-                    print()
-                    score = score - 1
-                    continue
 
 
-
-        #opperation - subtraction
-            if operation == 2:
-                guesses = guesses+1
-                sub = int(input(f"What number would you want to subtract from {givennum}? -"))
-                totalS = givennum - sub
-                print(f"ok {givennum} - {sub} = {totalS}")
-                print()
-                if totalS == targetnum:
-                    score = score + 1
-
-                    print("correct!!! good job ")
-                    replay()
-
-                else:
-                    print("Incorrect")
-                    print()
-                    score = score - 1
-                    continue
+        History = History + f"the square root of {num1} is {total}\n"
+        returnmen = input("press any button to return to main menu ")
+        if returnmen == 1 or returnmen != "a" or returnmen == "a":
+            main_menu()
 
 
-
-maingame()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+main_menu()
 
 
